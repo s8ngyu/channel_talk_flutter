@@ -34,8 +34,8 @@ enum ChannelButtonPosition {
 
 class ChannelButtonOption {
   final ChannelButtonPosition position;
-  final Float xMargin;
-  final Float yMargin;
+  final double xMargin;
+  final double yMargin;
 
   ChannelButtonOption({
     required this.position,
