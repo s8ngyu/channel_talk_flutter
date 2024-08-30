@@ -78,6 +78,8 @@ public class ChannelTalkFlutterPlugin: NSObject, FlutterPlugin {
       return
     }
 
+    print(argMaps)
+
     let profile = Profile()
     if let email = argMaps["email"] as? String {
       profile.set(email: email)
@@ -94,8 +96,8 @@ public class ChannelTalkFlutterPlugin: NSObject, FlutterPlugin {
     
     let buttonOption = ChannelButtonOption.init(
       position: .right,
-      xMargin: 0,
-      yMargin: 0
+      xMargin: 16,
+      yMargin: 75
     )
 
     let memberHash = argMaps["memberHash"] as? String

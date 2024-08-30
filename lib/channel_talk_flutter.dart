@@ -21,6 +21,35 @@ enum Language {
   final String value;
 }
 
+enum ChannelButtonPosition {
+  left('left'),
+  right('right');
+
+  const ChannelButtonPosition(this.value);
+
+  final String value;
+}
+
+class ChannelButtonOption {
+  final ChannelButtonPosition position;
+  final int xMargin;
+  final int yMargin;
+
+  ChannelButtonOption({
+    required this.position,
+    required this.xMargin,
+    required this.yMargin,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'position': position,
+      'xMargin': xMargin,
+      'yMargin': yMargin,
+    };
+  }
+}
+
 class ChannelTalk {
   static void setListener(ChannelTalkDelegate delegate) {
     return ChannelTalkFlutterPlatform.instance.setListener(delegate);
@@ -45,6 +74,7 @@ class ChannelTalk {
     bool? trackDefaultEvent,
     bool? hidePopup,
     Appearance? appearance,
+    ChannelButtonOption? channelButtonOption,
   }) {
     Map<String, dynamic> config = {
       'pluginKey': pluginKey,
@@ -60,6 +90,8 @@ class ChannelTalk {
       if (trackDefaultEvent != null) 'trackDefaultEvent': trackDefaultEvent,
       if (hidePopup != null) 'hidePopup': hidePopup,
       if (appearance != null) 'appearance': appearance.value,
+      if (channelButtonOption != null)
+        'channelButtonOption': channelButtonOption.toMap(),
     };
 
     return ChannelTalkFlutterPlatform.instance.boot(config);
