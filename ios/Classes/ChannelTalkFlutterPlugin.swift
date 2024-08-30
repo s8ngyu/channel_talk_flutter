@@ -78,8 +78,6 @@ public class ChannelTalkFlutterPlugin: NSObject, FlutterPlugin {
       return
     }
 
-    print(argMaps)
-
     let profile = Profile()
     if let email = argMaps["email"] as? String {
       profile.set(email: email)
