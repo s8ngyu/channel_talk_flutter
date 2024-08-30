@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'channel_talk_flutter_platform_interface.dart';
 
 enum Appearance {
@@ -32,8 +34,8 @@ enum ChannelButtonPosition {
 
 class ChannelButtonOption {
   final ChannelButtonPosition position;
-  final int xMargin;
-  final int yMargin;
+  final Float xMargin;
+  final Float yMargin;
 
   ChannelButtonOption({
     required this.position,
