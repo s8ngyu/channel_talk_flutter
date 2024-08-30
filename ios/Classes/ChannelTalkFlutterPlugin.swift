@@ -93,7 +93,7 @@ public class ChannelTalkFlutterPlugin: NSObject, FlutterPlugin {
     }
     
     let buttonOption = ChannelButtonOption.init(
-      position: .left,
+      position: .right,
       xMargin: 16,
       yMargin: 75
     )
