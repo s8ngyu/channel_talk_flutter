@@ -94,8 +94,8 @@ public class ChannelTalkFlutterPlugin: NSObject, FlutterPlugin {
     
     let buttonOption = ChannelButtonOption.init(
       position: .right,
-      xMargin: 16,
-      yMargin: 75
+      xMargin: 0,
+      yMargin: 0
     )
 
     let memberHash = argMaps["memberHash"] as? String
