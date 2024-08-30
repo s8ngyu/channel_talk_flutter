@@ -179,10 +179,23 @@ public class ChannelTalkFlutterPlugin implements FlutterPlugin, MethodCallHandle
       profile.setAvatarUrl(call.argument("avatarUrl"));
     }
 
+    Map<String, Object> channelButtonOptionMap = call.argument("channelButtonOption");
+    ChannelButtonPosition position = ChannelButtonPosition.RIGHT;
+    if (channelButtonOptionMap != null) {
+        String positionValue = (String) channelButtonOptionMap.get("position");
+        if (positionValue != null && positionValue.equalsIgnoreCase("left")) {
+            position = ChannelButtonPosition.LEFT;
+        }
+    }
+
+    Float xMargin = channelButtonOptionMap != null ? (Float) channelButtonOptionMap.get("xMargin") : 16.0f;
+    Float yMargin = channelButtonOptionMap != null ? (Float) channelButtonOptionMap.get("yMargin") : 75.0f;
+
     ChannelButtonOption buttonOption = new ChannelButtonOption(
-        ChannelButtonPosition.RIGHT,
-        16,
-        75);
+        position,
+        xMargin != null ? xMargin : 16.0f,
+        yMargin != null ? yMargin : 75.0f
+    );
 
     BootConfig bootConfig = BootConfig.create(pluginKey)
         .setProfile(profile)
