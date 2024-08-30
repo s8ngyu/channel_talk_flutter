@@ -43,7 +43,7 @@ class ChannelButtonOption {
 
   Map<String, dynamic> toMap() {
     return {
-      'position': position,
+      'position': position.value,
       'xMargin': xMargin,
       'yMargin': yMargin,
     };
