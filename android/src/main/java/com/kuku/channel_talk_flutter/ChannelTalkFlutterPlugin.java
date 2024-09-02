@@ -181,6 +181,7 @@ public class ChannelTalkFlutterPlugin implements FlutterPlugin, MethodCallHandle
 
     Map<String, Object> channelButtonOptionMap = call.argument("channelButtonOption");
     ChannelButtonPosition position = ChannelButtonPosition.RIGHT;
+
     if (channelButtonOptionMap != null) {
         String positionValue = (String) channelButtonOptionMap.get("position");
         if (positionValue != null && positionValue.equalsIgnoreCase("left")) {
@@ -188,14 +189,30 @@ public class ChannelTalkFlutterPlugin implements FlutterPlugin, MethodCallHandle
         }
     }
 
-    Float xMargin = channelButtonOptionMap != null ? (Float) channelButtonOptionMap.get("xMargin") : 16.0f;
-    Float yMargin = channelButtonOptionMap != null ? (Float) channelButtonOptionMap.get("yMargin") : 75.0f;
+    Float xMargin = null;
+    Float yMargin = null;
+
+    if (channelButtonOptionMap != null) {
+        Object xMarginObj = channelButtonOptionMap.get("xMargin");
+        if (xMarginObj != null) {
+            xMargin = ((Double) xMarginObj).floatValue();
+        }
+
+        Object yMarginObj = channelButtonOptionMap.get("yMargin");
+        if (yMarginObj != null) {
+            yMargin = ((Double) yMarginObj).floatValue();
+        }
+    }
+
+    xMargin = xMargin != null ? xMargin : 16.0f;
+    yMargin = yMargin != null ? yMargin : 75.0f;
 
     ChannelButtonOption buttonOption = new ChannelButtonOption(
         position,
-        xMargin != null ? xMargin : 16.0f,
-        yMargin != null ? yMargin : 75.0f
+        xMargin,
+        yMargin
     );
+
 
     BootConfig bootConfig = BootConfig.create(pluginKey)
         .setProfile(profile)
